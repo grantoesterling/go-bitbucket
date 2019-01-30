@@ -139,8 +139,10 @@ func injectClient(a *auth) *Client {
 	c.HttpClient = new(http.Client)
 	return c
 }
-
 func (c *Client) execute(method string, urlStr string, text string) (interface{}, error) {
+	return c.Execute(method, urlStr, text)
+}
+func (c *Client) Execute(method string, urlStr string, text string) (interface{}, error) {
 	// Use pagination if changed from default value
 	const DEC_RADIX = 10
 	if strings.Contains(urlStr, "/repositories/") {
